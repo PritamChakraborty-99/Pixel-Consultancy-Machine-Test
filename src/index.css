@@ -134,6 +134,11 @@ button:hover {
   margin: 20px !important;
 }
 
+.svg-icon img,svg{
+  color: white !important;
+
+}
+
 
 
 
