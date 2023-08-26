@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+// import { Formik } from 'formik';
+// import * as Yup from 'yup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col,  Form, Row } from 'react-bootstrap';
+import TravellerSelectModal from '../../ModalComponents/TravellerSelectModal';
 
 
 
@@ -10,12 +11,33 @@ const SearchPage = () => {
 
     // for Button Clicked Opening Return Date
     const [roundTripButtonClicked, setRoundTripButtonClicked] = useState(false)
-    const [active, setActive] = useState(false)
-    const [buttonVal, setButtonVal]= useState(1)
+    const [buttonVal, setButtonVal] = useState(1)
+
+    // For Traveller Select
+    const [openOptions, setOpenOptions] = useState(false);
+    const [options, setOptions] = useState({
+      adult: 1,
+      children: 0,
+      infant: 0,
+    });
+    
+    const handleOption = (name, operation) => {
+        setOptions((prev) => {
+          return {
+            ...prev,
+            [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+          };
+        });
+      };
+  
+
+
+
+
+
+    // Function For Select Button
     const selectButton = (val) => {
-        setButtonVal(val)
-        setActive(true)
-        
+        setButtonVal(val)        
     }
     useEffect(() => {
         if (buttonVal == 2) {
@@ -24,8 +46,13 @@ const SearchPage = () => {
         else {
             setRoundTripButtonClicked(false)
         }
-    },[buttonVal])
+    }, [buttonVal])
     
+    // Function For Select button ends
+
+    // Handle Close For Traveller Modal
+
+
 
 
 
@@ -71,16 +98,89 @@ const SearchPage = () => {
                         </Form.Group>
                     </div>: ""}
                     <Col md>
-                    <label htmlFor="Preferred Class">Traveller(s)</label>         
-                    <Form.Select aria-label="Floating label select example">
-                    </Form.Select>
+                            
+                            <label htmlFor="Preferred Class">Traveller(s)</label>
+                            <Form.Control size="lg" type="text" placeholder="Large text" onClick={() => setOpenOptions(!openOptions)}
+                            value={`${options.adult} adult · ${options.children} children · ${options.infant} infant`}
+                            />  
+                            {/* {openOptions && (
+                                <div className="options">
+                                    <div className="optionItem">
+                                        <span className="optionText">Adult</span>
+                                        <div className="optionCounter">
+                                            <button
+                                                disabled={options.adult <= 1}
+                                                className="optionCounterButton"
+                                                onClick={() => handleOption("adult", "d")}
+                                            >
+                                                -
+                                            </button>
+                                            <span className="optionCounterNumber">
+                                                {options.adult}
+                                            </span>
+                                            <button
+                                                className="optionCounterButton"
+                                                onClick={() => handleOption("adult", "i")}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="optionItem">
+                                        <span className="optionText">Children (1-14yrs)</span>
+                                        <div className="optionCounter">
+                                            <button
+                                                disabled={options.children <= 0}
+                                                className="optionCounterButton"
+                                                onClick={() => handleOption("children", "d")}
+                                            >
+                                                -
+                                            </button>
+                                            <span className="optionCounterNumber">
+                                                {options.children}
+                                            </span>
+                                            <button
+                                                className="optionCounterButton"
+                                                onClick={() => handleOption("children", "i")}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="optionItem">
+                      <span className="optionText">Infant(0-2 yrs)</span>
+                      <div className="optionCounter">
+                        <button
+                          disabled={options.infant <= 0}
+                          className="optionCounterButton"
+                          onClick={() => handleOption("infant", "d")}
+                        >
+                          -
+                        </button>
+                        <span className="optionCounterNumber">
+                          {options.infant}
+                        </span>
+                        <button
+                          className="optionCounterButton"
+                          onClick={() => handleOption("infant", "i")}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                                </div>
+                                )}
+                                 */}
+                            
+                    
+                            
+                    
                     </Col>
                     <Col md>
                     <label htmlFor="Preferred Class">Preferred Class</label>         
                      
                     <Form.Select aria-label="Floating label select example">
-                    <option>Preferred Class</option>
-                    <option value="1">Preferred Class</option>
+                    <option value="Preferred Class">Preferred Class</option>
                     <option value="Economy">Economy</option>
                     <option value="Premium Economy">Premium Economy</option>
                     <option value="Business">Business</option>
@@ -95,12 +195,13 @@ const SearchPage = () => {
 
                 
 
-                    {/** 6 fields */}
-
+           
 
                 
 
             </div>
+
+
     </>
      
   )
