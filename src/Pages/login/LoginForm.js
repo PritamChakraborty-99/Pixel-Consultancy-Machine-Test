@@ -65,6 +65,7 @@ const LoginForm = () => {
                   className="form-control"
               />
               
+              
                 {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.password && touched.password && errors.password}

@@ -116,7 +116,24 @@ button:hover {
     box-shadow: none;
     padding: 20px 0;
    
-
+    
   }
+
 }
+
+/* for Header Buttons*/
+
+.header-buttons {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  
+}
+
+.header-buttons .btn-primary {
+  margin: 20px !important;
+}
+
+
+
 
