@@ -4,10 +4,26 @@ import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col,  Form, Row } from 'react-bootstrap';
 import TravellerSelectModal from '../../ModalComponents/TravellerSelectModal';
+import axios from 'axios';
 
 
 
 const SearchPage = () => {
+
+
+//     const [getRepo, setGetRepo] = useState([])
+
+//     const getFlightAirport = () => {
+
+//         axios.post('https://devadmin.altabooking.com/api/v2/flight/search-flight-airport')
+//             .then(response => {
+//                 console.log("======",response);
+//                 const flightRepo = response.data;
+//                 setGetRepo(flightRepo)    
+// }); }
+
+//     useEffect(()=>{getFlightAirport()},[])
+    
 
     // for Button Clicked Opening Return Date
     const [roundTripButtonClicked, setRoundTripButtonClicked] = useState(false)

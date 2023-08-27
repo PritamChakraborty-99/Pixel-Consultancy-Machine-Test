@@ -36,7 +36,6 @@ const LoginForm = (props) => {
 
   
   const handleLogin = (e) => {
-    setLoading(true);
       dispatch(login(userEmail))
         .then(() => {
           navigate("/search");
@@ -57,7 +56,8 @@ const LoginForm = (props) => {
         validationSchema={schema}
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
-          setUserEmail({ email : values.email, password: values.password})
+          setUserEmail({ email: values.email, password: values.password })
+          handleLogin()
         }}>
         {({
           values,
@@ -105,7 +105,7 @@ const LoginForm = (props) => {
                 </p>
               {/* Click on submit button to submit the form */}
               
-              <button type="submit">Login</button>
+              <button type="submit" onClick={()=>handleLogin()}>Login</button>
               
              
               
