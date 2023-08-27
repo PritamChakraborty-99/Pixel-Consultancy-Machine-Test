@@ -46,6 +46,7 @@ const LoginForm = (props) => {
         });
     } 
 
+    
 
 
 
@@ -87,7 +88,8 @@ const LoginForm = (props) => {
                   {errors.email && touched.email && errors.email}
               </p>
               <label htmlFor="password">Password*</label> 
-              
+            
+      
                 <input
                   type="password"
                   name="password"
@@ -97,6 +99,9 @@ const LoginForm = (props) => {
                   placeholder="Enter password"
                   className="form-control"
               />
+                <div className='image'>
+                <span class='ab'><i class="fa fa-eye-slash" id="togglePassword"></i></span>
+                </div>
               
               
                 {/* If validation is not passed show errors */}

@@ -5,10 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col,  Form, Row } from 'react-bootstrap';
 import TravellerSelectModal from '../../ModalComponents/TravellerSelectModal';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const SearchPage = () => {
+
+    const navigate = useNavigate()
 
 
 //     const [getRepo, setGetRepo] = useState([])
@@ -67,7 +70,10 @@ const SearchPage = () => {
     // Function For Select button ends
 
     // Handle Close For Traveller Modal
-
+    const routeChange = () =>{ 
+        let path = `/flight/list`; 
+        navigate(path);
+      }
 
 
 
@@ -85,7 +91,7 @@ const SearchPage = () => {
                     <Col md>
                     <label htmlFor="Preferred Class">Flying From</label>         
                             <Form.Select aria-label="Floating label select example">
-                            <option value="Preferred Class">Preferred Class</option>
+                            <option value="Indira Gandhi Airport Delhi">Indira Gandhi Airport Delhi</option>
                     </Form.Select>
                         </Col>
                         <div className='svg-icon'>
@@ -97,7 +103,8 @@ const SearchPage = () => {
                         
                         <Col md>
                     <label htmlFor="Preferred Class">Flying To</label>         
-                    <Form.Select aria-label="Floating label select example">
+                            <Form.Select aria-label="Floating label select example">
+                            <option value="London Heathrow Airport(LHR) United Kingdom">London Heathrow Airport(LHR) United Kingdom</option>
                     </Form.Select>
                 </Col>
                     
@@ -197,7 +204,6 @@ const SearchPage = () => {
                     <label htmlFor="Preferred Class">Preferred Class</label>         
                      
                     <Form.Select aria-label="Floating label select example">
-                    <option value="Preferred Class">Preferred Class</option>
                     <option value="Economy">Economy</option>
                     <option value="Premium Economy">Premium Economy</option>
                     <option value="Business">Business</option>
@@ -205,7 +211,7 @@ const SearchPage = () => {
                      </Form.Select>
                 </Col>
                     </Row>
-                    <Button variant="primary">SUBMIT</Button>{' '}
+                    <Button variant="primary" onClick={routeChange} >SUBMIT</Button>{' '}
               
 
                 </Form>

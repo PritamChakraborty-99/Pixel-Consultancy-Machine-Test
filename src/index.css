@@ -139,6 +139,30 @@ button:hover {
 
 }
 
+.image{
+  width: 100%;
+position: relative;
+padding: 7px;
+
+}
+.ab{
+
+display: flex;
+align-items: center;
+position: absolute;
+height: 100%;
+top: -58px;
+right: 9px;
+padding-right: 1px;
+}
+
+.image .toggle {
+  width: 100% !important;
+  position: relative;
+  top: -13px;
+  left: 10px;
+}
+
 
 
 
