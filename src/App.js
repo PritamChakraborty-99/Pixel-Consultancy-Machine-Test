@@ -6,8 +6,8 @@ import Routing from "./Config/Routes";
 function App() {
   return (
     <>
-     
-       <Routing/>
+    
+        <Routing/>
       
       
     </>

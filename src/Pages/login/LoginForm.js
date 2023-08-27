@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './LoginForm'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik } from 'formik';
 import * as Yup from 'yup'
+import { login } from "../../Actions/auth";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -14,7 +17,38 @@ const schema = Yup.object().shape({
 });
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const form = useRef();
+  const [userEmail, setUserEmail] = useState({});
+  // const [password, setPassword] = useState({});
+
+  // const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    console.log("userEmail, password",userEmail );
+  }, [userEmail])
+
+  const [loading, setLoading] = useState(false);
+
+
+  
+  const handleLogin = (e) => {
+    setLoading(true);
+      dispatch(login(userEmail))
+        .then(() => {
+          navigate("/search");
+          window.location.reload();
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    } 
+
+
+
 
 
   return (
@@ -23,8 +57,7 @@ const LoginForm = () => {
         validationSchema={schema}
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
-          // Alert the input values of the form that we filled
-          alert(JSON.stringify(values));
+          setUserEmail({ email : values.email, password: values.password})
         }}>
         {({
           values,
@@ -39,7 +72,7 @@ const LoginForm = () => {
               
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <div className='row'>
-                <label for="email">Email Address*</label> 
+                <label htmlFor="email">Email Address*</label> 
                 <input
                   type="email"
                   name="email"
@@ -53,7 +86,7 @@ const LoginForm = () => {
                  <p className="error">
                   {errors.email && touched.email && errors.email}
               </p>
-              <label for="password">Password*</label> 
+              <label htmlFor="password">Password*</label> 
               
                 <input
                   type="password"

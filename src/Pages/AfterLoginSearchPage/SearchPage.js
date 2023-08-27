@@ -68,7 +68,8 @@ const SearchPage = () => {
                     <Row className="g-2">
                     <Col md>
                     <label htmlFor="Preferred Class">Flying From</label>         
-                    <Form.Select aria-label="Floating label select example">
+                            <Form.Select aria-label="Floating label select example">
+                            <option value="Preferred Class">Preferred Class</option>
                     </Form.Select>
                         </Col>
                         <div className='svg-icon'>
